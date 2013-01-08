@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-    <%= f.number_field :priority %>
+    <%= f.select :priority, (1..5).to_a.map {|i| [t("activerecord.attributes.todo.priority_names")[i], "name"]} %>
   </div>
   <div class="field">
     <%= f.hidden_field :user_id %>

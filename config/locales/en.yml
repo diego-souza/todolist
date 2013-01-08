@@ -3,3 +3,12 @@
 
 en:
   hello: "Hello world"
+  activerecord: 
+    attributes:
+      todo:
+        priority_names:
+          1: "Very High"
+          2: "High"
+          3: "Normal"
+          4: "Low"
+          5: "Very Low"
