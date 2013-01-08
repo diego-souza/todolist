@@ -1,7 +1,9 @@
 class Todo < ActiveRecord::Base
   attr_accessible :content, :priority, :user_id
-  validates :content, :priotiry, presence: true
-  validates :priotity, numericality:  { integer:  true, greater_than: 0, less_than: 6 }
+  validates :content, :priority, presence: true
+  validates :priority, numericality:  { integer:  true, less_than: 6 }
+  validates :priority, numericality:  { greater_than: 0 }, on: :create
+  validates :priority, numericality:  { equal_or_greater_than: 0 }, on: :update
 
   belongs_to :user
 
