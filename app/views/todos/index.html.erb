@@ -14,6 +14,12 @@
   <tr>
     <td><%= todo.content %></td>
     <td><%= todo.priority_name %></td>
+    <td>
+      <%= form_for(todo) do |f| %>
+        <%= f.hidden_field :priority, value: Todo::DONE %>
+        <%= f.submit "Mark as Done" %>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', todo %></td>
     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
     <td><%= link_to 'Remove', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

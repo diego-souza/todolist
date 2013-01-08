@@ -6,6 +6,11 @@ class Todo < ActiveRecord::Base
   validates :priority, numericality:  { equal_or_greater_than: 0 }, on: :update
 
   belongs_to :user
+  
+  default_scope order(:priority)
+
+  DONE = 0
+  PRIORITIES = (0..5).to_a
 
   def priority_name
     I18n.t("activerecord.attributes.todo.priority_names")[self.priority] 
