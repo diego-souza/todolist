@@ -17,11 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :priority %><br />
-    <% if @todo.new_record? %>
-      <%= f.select :priority, (Todo::PRIORITIES - [Todo::DONE]).map {|i| [t("activerecord.attributes.todo.priority_names")[i], i]} %>
-    <% else %>
-      <%= f.select :priority, (Todo::PRIORITIES).map {|i| [t("activerecord.attributes.todo.priority_names")[i], i]} %>
-    <% end %>
+    <%= f.select :priority, priority_name_options_for(@todo) %>
   </div>
   <div class="field">
     <%= f.hidden_field :user_id %>
