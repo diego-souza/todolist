@@ -1,48 +1,33 @@
 class TodosController < ApplicationController
-  authorize_resource
+  load_and_authorize_resource
+  respond_to :html, :json, :xml
+
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @todos }
-    end
+    respond_with(@todos)
   end
 
   # GET /todos/1
   # GET /todos/1.json
   def show
-    @todo = Todo.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @todo }
-    end
+    respond_with(@todo)
   end
 
   # GET /todos/new
   # GET /todos/new.json
   def new
-    @todo = Todo.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @todo }
-    end
+    respond_with(@todo)
   end
 
   # GET /todos/1/edit
   def edit
-    @todo = Todo.find(params[:id])
+    respond_with(@todo)
   end
 
   # POST /todos
   # POST /todos.json
   def create
-    @todo = Todo.new(params[:todo])
-
     respond_to do |format|
       if @todo.save
         format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
@@ -57,8 +42,6 @@ class TodosController < ApplicationController
   # PUT /todos/1
   # PUT /todos/1.json
   def update
-    @todo = Todo.find(params[:id])
-
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
         format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
@@ -73,7 +56,6 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   # DELETE /todos/1.json
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy
 
     respond_to do |format|
