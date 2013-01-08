@@ -1,23 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Todolist</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+<meta charset="utf-8">
+<title><%= content_for?(:title) ? yield(:title) : "Todolist" %></title>
+<%= csrf_meta_tags %>
+
+<%= stylesheet_link_tag "application", :media => "all" %>
+<%= javascript_include_tag "application" %>
 </head>
 <body>
 
-  <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  <% else %>
-      <%= link_to('Login', new_user_session_path)  %>  
-  <% end %>
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Todolist</a>
+      <div class="container nav-collapse">
+        <ul class="nav">
+          <% if user_signed_in? %>
+            <li class=""><%= link_to current_user.email %></li>
+            <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+          <% else %>
+            <li><%= link_to('Login', new_user_session_path)  %></li>
+          <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <%= yield %>
+<div class="container">
+  <!-- Changed for Devise -->
+ <%= content_for?(:content) ? yield(:content) : yield %> 
+</div>
 
 </body>
 </html>

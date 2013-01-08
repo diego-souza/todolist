@@ -1,10 +1,9 @@
 <h1>Listing todos</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Content</th>
     <th>Priority</th>
-    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,16 +16,15 @@
     <td>
       <%= form_for(todo) do |f| %>
         <%= f.hidden_field :priority, value: Todo::DONE %>
-        <%= f.submit "Mark as Done" %>
+        <%= f.submit "Mark as Done", class: "btn btn-success" %>
       <% end %>
     </td>
-    <td><%= link_to 'Show', todo %></td>
-    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-    <td><%= link_to 'Remove', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_todo_path(todo), class: "btn btn-primary" %></td>
+    <td><%= link_to 'Remove', todo, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Todo', new_todo_path %>
+<%= link_to 'New Todo', new_todo_path, class: "btn btn-primary" %>
